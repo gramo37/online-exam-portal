@@ -4,7 +4,7 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
-import { loginUser, loadUser } from "../../redux/actions/userAction";
+import { loginUser } from "../../redux/actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import LoadingBar from "react-top-loading-bar";
@@ -56,6 +56,24 @@ const Login = () => {
     console.log(userCredentials)
     // setLoginIsClicked(true)
   };
+
+  const demoTeacherLoginSubmit = async (e) => {
+    e.preventDefault();
+    setProgress(40)
+    setisLoginClicked(true)
+    // Dispatch Login 
+    await dispatch(loginUser("demoTeacher@gmail.com", "Pass@405"));
+    setProgress(100)
+  }
+
+  const demoStudentLoginSubmit = async (e) => {
+    e.preventDefault();
+    setProgress(40)
+    setisLoginClicked(true)
+    // Dispatch Login 
+    await dispatch(loginUser("demostudent@gmail.com", "Pass@405"));
+    setProgress(100)
+  }
 
   return (
     <>
@@ -142,12 +160,25 @@ const Login = () => {
                 Forgot Password ?
               </Link>
             </div>
-            <div>
+            <div className="flex flex-col">
               <button
                 type="submit"
-                className="rounded-full border-2 border-green-500 border-solid py-2 px-12 sm:py-3 sm:px-16 mt-4 shadow-md text-green-500 font-bold hover:bg-green-300"
+                className="rounded-full border-2 border-green-500 border-solid py-2 px-1 sm:py-1 sm:px-2 mt-4 shadow-md text-green-500 font-bold hover:bg-green-300"
               >
                 LOG IN
+              </button>
+              <button
+                className="rounded-full border-2 border-green-500 border-solid py-2 px-1 sm:py-1 sm:px-2 mt-4 shadow-md text-green-500 font-bold hover:bg-green-300"
+                onClick={demoTeacherLoginSubmit}
+              >
+                Demo Teacher Login
+              </button>
+
+              <button
+                className="rounded-full border-2 border-green-500 border-solid py-2 px-1 sm:py-1 sm:px-2 mt-4 shadow-md text-green-500 font-bold hover:bg-green-300"
+                onClick={demoStudentLoginSubmit}
+              >
+                Demo Student Login
               </button>
 
             </div>

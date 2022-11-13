@@ -19,8 +19,8 @@ app.use(express.json());
 app.use(cors())
 
 // Routes
-app.use("/api/v1", require("./routes/userRoute"))
-app.use("/api/v1", require("./routes/questionRoute"))
+app.use("/api/v1/", require("./routes/userRoute"))
+app.use("/api/v1/", require("./routes/questionRoute"))
 app.use("/api/v1/", require("./routes/teacherRoute"))
 app.use("/api/v1/", require("./routes/examRoute"))
 

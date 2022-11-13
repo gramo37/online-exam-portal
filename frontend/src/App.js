@@ -23,6 +23,7 @@ import MyExams from './components/Home/Exam/MyExams';
 import DisplayScores from './components/Scores/DisplayScores';
 import Results from './components/Home/Exam/Results';
 import TeacherProfile from './components/profiles/TeacherProfile';
+import Error404 from './components/404/Error404';
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
           <Route exact path="/" element={<Login />} />
           <Route exact path="/password/forgot" element={<SendLink />} />
           <Route exact path="/api/v1/reset/password" element={<VerifyLink />} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </Router>
     </>

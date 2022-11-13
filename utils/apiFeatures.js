@@ -16,7 +16,7 @@ class ApiFeatures {
         }
       : {};
 
-    this.query = this.query.find({ ...keyword, role: role }); // Why find() is repeated ?  find() method can be repeated if needed
+    this.query = this.query.find({ ...keyword, role: role }); 
 
     return this;
   }
