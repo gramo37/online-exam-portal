@@ -3,7 +3,8 @@ import { sendEmail } from "../../utils/sendEmail";
 const axios = require("axios");
 
 // const host = `http://localhost:5000`
-const host = `https://online-exam-portal-by-gramo.herokuapp.com`
+const host = ``
+// const host = `https://online-exam-portal-by-gramo.herokuapp.com`
 
 
 function setCookie(cname, cvalue, exdays) {

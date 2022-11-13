@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "concurrently \"node index.js\" \"cd frontend && npm run start\""
+    "dev": "concurrently \"node index.js\" \"cd frontend && npm run start\"",
+    "build": "cd frontend && npm run build && cd.."
   },
   "author": "gramo",
   "license": "ISC",

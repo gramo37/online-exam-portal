@@ -1,7 +1,8 @@
 import axios from "axios"
 
-const host = `https://online-exam-portal-by-gramo.herokuapp.com`
+// const host = `https://online-exam-portal-by-gramo.herokuapp.com`
 // const host = `http://localhost:5000`
+const host = ``
 
 function getCookie(cname) {
     let name = cname + "=";

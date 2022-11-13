@@ -3,8 +3,7 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Route,
-  Routes,
-  useNavigate
+  Routes
 } from "react-router-dom"
 import Home from './components/Home/Home';
 import Signup from './components/Auth/Signup';
