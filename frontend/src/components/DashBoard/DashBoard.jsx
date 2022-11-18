@@ -11,6 +11,8 @@ import page3bg from "./images/page3bg.jpg";
 import pageImage1 from "./images/page1Image.png";
 import pageImage2 from "./images/page2Image.png";
 import pageImage3 from "./images/page3Image.png";
+import videoBgImage from "./images/videobg.jpg";
+
 import { Link } from "react-router-dom";
 
 const DashBoard = () => {
@@ -40,13 +42,6 @@ const DashBoard = () => {
 const DashBoardInfo = ({ bgImage, title, desc, image, align }) => {
 
   const [show, setShow] = useState(true);
-  // const [show, setShow] = useState(false);
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setShow(true);
-  //   }, 1300);
-  // }, [])
 
   return (
     <header style={{ backgroundImage: `url(${bgImage})` }} className="dashboard-header">
@@ -71,8 +66,8 @@ const DashBoardInfo = ({ bgImage, title, desc, image, align }) => {
 
 const DashBoardVideo = () => {
   return (
-    <section className="dashboard-demo-video">
-      <video width="100vw" height="100vh" controls autoPlay loop muted >
+    <section style={{ backgroundImage: `url(${videoBgImage})` }} className="dashboard-demo-video">
+      <video width="100vw" height="100vh" autoPlay loop muted >
         <source src={demoVideo} type="video/mp4" />
       </video>
     </section>

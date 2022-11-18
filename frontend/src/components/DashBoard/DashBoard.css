@@ -35,7 +35,7 @@ body::-webkit-scrollbar {
   height: 90vh;
   position: relative;
   z-index: 10;
-  scroll-snap-align: start;
+  /* scroll-snap-align: start; */
 }
 
 .dashboard-overlay {
@@ -140,8 +140,11 @@ footer {
 .dashboard-demo-video {
   height: 90vh;
   background: var(--background-color);
+  background-size: cover;
+  background-attachment: fixed;
   padding: 20px 0px;
   scroll-snap-align: start;
+  z-index: 100;
 }
 
 .dashboard-demo-video h1 {
@@ -153,8 +156,8 @@ footer {
 }
 
 .dashboard-demo-video video {
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   margin: auto;
 }
 
