@@ -33,6 +33,8 @@ const Error404 = () => {
             <p style={{fontSize: "1rem", fontStyle: "italic"}}>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
             <Link to="/">
                 <button style={buttonStyle}>GO TO HOMEPAGE</button></Link>
+            <Link to="/dashboard">
+                <button style={buttonStyle}>GO TO DASHBOARD</button></Link>
         </div>
     )
 }

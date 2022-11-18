@@ -37,7 +37,7 @@ const Signup = () => {
         alert.show(user.error.message)
       } else if (user.user !== undefined && user.user !== "" && user.user.success) {
         alert.success("Signin Successful")
-        navigate("/home")
+        navigate("/dashboard")
       }
     }
     console.log(user, user.loading)

@@ -24,7 +24,7 @@ const Login = () => {
         alert.show(user.error.message)
       } else if (user.user !== undefined && user.user !== "" && user.user.success) {
         alert.success("Login Successful")
-        navigate("/home")
+        navigate("/dashboard")
       }
     }
     console.log(user, user.loading)

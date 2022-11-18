@@ -23,6 +23,8 @@ import DisplayScores from './components/Scores/DisplayScores';
 import Results from './components/Home/Exam/Results';
 import TeacherProfile from './components/profiles/TeacherProfile';
 import Error404 from './components/404/Error404';
+import DashBoard from './components/DashBoard/DashBoard';
+import Protected from './components/Protected Routes/Protected';
 
 function App() {
 
@@ -37,7 +39,8 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route exact path="/home" element={<Home />} />
+        <Route exact path="/" element={<DashBoard />} />
+          <Route exact path="/dashboard" element={<Protected Component={Home}/>} />
           <Route exact path="/student/:id" element={<StudentProfile />} />
           <Route exact path="/teacher/:id" element={<TeacherProfile />} />
           <Route exact path="/studentsList" element={<ShowMyStudents />} />
@@ -49,7 +52,7 @@ function App() {
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/verifyOTP" element={<VerifyOTP />} />
-          <Route exact path="/" element={<Login />} />
+          <Route exact path="/login" element={<Login />} />
           <Route exact path="/password/forgot" element={<SendLink />} />
           <Route exact path="/api/v1/reset/password" element={<VerifyLink />} />
           <Route path="*" element={<Error404 />} />

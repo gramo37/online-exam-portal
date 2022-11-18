@@ -17,7 +17,7 @@ const Home = (props) => {
 
   return (
     <>
-      <Navbar active="home"/>
+      <Navbar/>
       {user.user?.user?.role === "teacher" && <TeacherHome />}
       {user.user?.user?.role === "student" && <StudentHome />}
     </>

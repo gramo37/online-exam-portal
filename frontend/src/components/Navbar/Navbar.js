@@ -29,14 +29,14 @@ const Navbar = (props) => {
     } 
   }, [user])
 
-  useEffect(async ()=>{
-    console.log(user)
-    if(!isLogoutClicked && user.error !== "" && user.error !== undefined) {
-      alert.error(user.error.message);
-      // await dispatch(clearState());
-      navigate("/")
-    }
-  }, [user])
+  // useEffect(async ()=>{
+  //   console.log(user)
+  //   if(!isLogoutClicked && user.error !== "" && user.error !== undefined) {
+  //     alert.error(user.error.message);
+  //     // await dispatch(clearState());
+  //     navigate("/")
+  //   }
+  // }, [user])
 
   const logout = async () => {
     setIsLogoutClicked(true);
@@ -58,7 +58,7 @@ const Navbar = (props) => {
             <li
               className={`mx-1 cursor-pointer hover:bg-gray-300 sm:px-4 sm:py-2 p-0 rounded-md sm:text-lg text-sm`}
             >
-              <Link to="/home" className={`${ props.active === "home" ? "border-b-2 border-blue-400" : false }`}>Home</Link>
+              <Link to="/" className={`${ props.active === "home" ? "border-b-2 border-blue-400" : false }`}>Home</Link>
             </li>
             <li
               className={`mx-1 cursor-pointer hover:bg-gray-300 sm:px-4 sm:py-2 p-0 rounded-md sm:text-lg text-sm`}
@@ -85,10 +85,13 @@ const Navbar = (props) => {
           </div>
         <div
           className={`${
-            showOptions ? "z-10 translate-y-16" : "-z-10 -translate-y-40"
-          } transition-all -translate-x-2 absolute top-0 bg-white px-2 py-4 shadow-lg border-2 rounded-md`}
+            showOptions ? "z-10 translate-y-16" : "-z-10 -translate-y-[120%]"
+          } transition-all -translate-x-4 absolute top-0 bg-white px-2 py-4 shadow-lg border-2 rounded-md`}
         >
-          <ul>
+          {(user.user?.user != undefined) ? <ul>
+            <li onClick={()=>navigate("/dashboard")} className="hover:bg-gray-300 px-2 py-3 cursor-pointer rounded-md">
+              Dashboard
+            </li>
             <li className="hover:bg-gray-300 px-2 py-3 cursor-pointer rounded-md">
               Change Password
             </li>
@@ -98,7 +101,22 @@ const Navbar = (props) => {
             >
               Log Out
             </li>
+          </ul> :
+          <ul>
+            <li
+              onClick={()=>navigate("/login")}
+              className="hover:bg-gray-300 px-2 py-3 cursor-pointer rounded-md"
+            >
+              Log In
+            </li>
+            <li
+              onClick={()=>navigate("/signup")}
+              className="hover:bg-gray-300 px-2 py-3 cursor-pointer rounded-md"
+            >
+              Sign Up
+            </li>
           </ul>
+          }
         </div>
         </div>
       </nav>
