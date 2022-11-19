@@ -40,17 +40,17 @@ const DashBoard = () => {
 };
 
 const DashBoardInfo = ({ bgImage, title, desc, image, align }) => {
-
-  const [show, setShow] = useState(true);
-
+  console.log("dgfdbfdb");
   return (
+    
+    // <header className="dashboard-header">
     <header style={{ backgroundImage: `url(${bgImage})` }} className="dashboard-header">
       <div className="dashboard-overlay"></div>
       <div className="dashboard-header-container" style={{ flexDirection: `${align == "left" ? "row-reverse" : "row"}` }}>
         <div className={`dashboard-header-image`}>
-          <img className={`${show ? "showHeaderContent" : "hideHeaderImg"}`} src={image} alt="Header-Image" />
+          <img className="showHeaderContent" src={image} alt="Header-Image" />
         </div>
-        <div className={`${show ? "showHeaderContent" : "hideHeaderContent"} dashboard-header-content`}>
+        <div className="showHeaderContent dashboard-header-content">
           <h1>{title}</h1>
           {desc?.map((item) => {
             return (<p>{item}</p>)
@@ -63,9 +63,9 @@ const DashBoardInfo = ({ bgImage, title, desc, image, align }) => {
     </header>
   )
 }
-
 const DashBoardVideo = () => {
   return (
+    // <section className="dashboard-demo-video">
     <section style={{ backgroundImage: `url(${videoBgImage})` }} className="dashboard-demo-video">
       <video width="100vw" height="100vh" autoPlay loop muted >
         <source src={demoVideo} type="video/mp4" />

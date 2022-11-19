@@ -9,9 +9,6 @@
 
 .dashboard-main {
   position: relative;
-  /* overflow: scroll; */
-  /* scroll-snap-type: y proximity; */
-  /* height: 100vh; */
 }
 
 .dashboard-main,
@@ -35,7 +32,6 @@ body::-webkit-scrollbar {
   height: 90vh;
   position: relative;
   z-index: 10;
-  /* scroll-snap-align: start; */
 }
 
 .dashboard-overlay {
@@ -143,7 +139,6 @@ footer {
   background-size: cover;
   background-attachment: fixed;
   padding: 20px 0px;
-  scroll-snap-align: start;
   z-index: 100;
 }
 
