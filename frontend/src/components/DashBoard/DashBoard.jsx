@@ -25,16 +25,16 @@ const DashBoard = () => {
         <DashBoardInfo bgImage={page1bg} align="right" title="Different Dashboards for Different Roles" desc={["The application has separate dashboards for students", "and teachers and allows CRUD operations depending on the role."]} image={pageImage1} />
         <DashBoardInfo bgImage={page2bg} align="left" title="No worries if you forget Passwords" desc={["An email service is integrated with this application", "to facilitate forgot password functionality."]} image={pageImage2} />
         <DashBoardInfo bgImage={page3bg} align="right" title="Calculate marks Quickly" desc={["The teacher can see the number of students who took", "the exam and also calculate the marks in one click!"]} image={pageImage3} />
+        <footer>
+          <span>Created by Prasanna Gramopadhye</span>
+          <span className="footer-horizontal-bar">|</span>
+          <a href="https://github.com/gramo37">Github</a>
+          <span className="footer-horizontal-bar">|</span>
+          <a href="https://www.linkedin.com/in/prasanna-gramopadhye-1791701b9/">LinkedIn</a>
+          <span className="footer-horizontal-bar">|</span>
+          <a href="https://twitter.com/gramopadhye37">Twitter</a>
+        </footer>
       </main>
-      <footer>
-        <span>Created by Prasanna Gramopadhye</span>
-        <span className="footer-horizontal-bar">|</span>
-        <a href="https://github.com/gramo37">Github</a>
-        <span className="footer-horizontal-bar">|</span>
-        <a href="https://www.linkedin.com/in/prasanna-gramopadhye-1791701b9/">LinkedIn</a>
-        <span className="footer-horizontal-bar">|</span>
-        <a href="https://twitter.com/gramopadhye37">Twitter</a>
-      </footer>
     </div>
   );
 };
@@ -42,7 +42,7 @@ const DashBoard = () => {
 const DashBoardInfo = ({ bgImage, title, desc, image, align }) => {
   console.log("dgfdbfdb");
   return (
-    
+
     // <header className="dashboard-header">
     <header style={{ backgroundImage: `url(${bgImage})` }} className="dashboard-header">
       <div className="dashboard-overlay"></div>
