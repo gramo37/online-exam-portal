@@ -70,6 +70,11 @@ const Navbar = (props) => {
             >
               <Link to="/contact" className={`${ props.active === "contact" ? "border-b-2 border-blue-400" : false }`}>Contact Us</Link>
             </li>
+            {(user.user?.user != undefined) && <li
+              className={`mx-1 cursor-pointer hover:bg-gray-300 sm:px-4 sm:py-2 p-0 rounded-md sm:text-lg text-sm`}
+            >
+              <Link to="/dashboard" className={`${ props.active === "dashboard" ? "border-b-2 border-blue-400" : false }`}>Dashboard</Link>
+            </li>}
           </ul>
 
         </div>

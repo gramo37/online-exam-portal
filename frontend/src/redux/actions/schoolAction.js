@@ -1,8 +1,4 @@
-import axios from "axios"
-
-// const host = `https://online-exam-portal-by-gramo.herokuapp.com`
-// const host = `http://localhost:5000`
-const host = ``
+import * as api from "../../api/school.js"
 
 function getCookie(cname) {
     let name = cname + "=";
@@ -26,15 +22,9 @@ export const searchStudent = (keyword) => async (dispatch) => {
             type: "RequireGetStudents"
         })
 
-        const link = `${host}/api/v1/searchStudent?keyword=${keyword}`
-        const headers = {
-            Accept: "application/json",
-            "Content-Type": "application/json;charset=UTF-8",
-        }
         const token = getCookie("authToken")
-        const { data } = await axios.post(link, {
-            authToken: token
-        })
+        const {data} = await api.searchStudent({authToken: token}, keyword);
+
         dispatch({
             type: "GetStudentSuccess",
             payload: data
@@ -52,11 +42,10 @@ export const searchTeacher = (keyword) => async (dispatch) => {
         dispatch({
             type: "RequireGetTeachers"
         })
-        const link = `${host}/api/v1/searchTeacher?keyword=${keyword}`
+        
         const token = getCookie("authToken")
-        const { data } = await axios.post(link, {
-            authToken: token
-        })
+        const {data} = await api.searchTeacher({authToken: token}, keyword);
+
         dispatch({
             type: "GetTeacherSuccess",
             payload: data
@@ -75,13 +64,8 @@ export const getStudentProfile = (id) => async (dispatch) => {
             type: "RequireGetStudents"
         })
 
-        const link = `${host}/api/v1/getStudentProfile/${id}`
-        const headers = {
-            Accept: "application/json",
-            "Content-Type": "application/json;charset=UTF-8",
-        }
-
-        const { data } = await axios.get(link)
+        const { data } = await api.getStudentProfile(id);
+        console.log(data);
 
         dispatch({
             type: "GetStudentSuccess",
@@ -101,11 +85,8 @@ export const getMyStudents = () => async (dispatch) => {
             type: "RequireGetStudents"
         })
 
-        const link = `${host}/api/v1/showStudents`
         const token = getCookie("authToken")
-        const { data } = await axios.post(link, {
-            authToken: token
-        })
+        const { data } = await api.getMyStudents({authToken: token});
 
         dispatch({
             type: "GetStudentSuccess",
@@ -125,16 +106,8 @@ export const addRemoveStudent = (id) => async (dispatch) => {
             type: "RequireAddStudents"
         })
 
-        const link = `${host}/api/v1/addStudent/${id}`
         const token = getCookie("authToken")
-        const headers = {
-            Accept: "application/json",
-            "Content-Type": "application/json;charset=UTF-8",
-        }
-
-        const { data } = await axios.post(link, {
-            authToken: token
-        })
+        const { data } = await api.addRemoveStudent({authToken: token}, id);
 
         dispatch({
             type: "AddStudentSuccess",
@@ -153,11 +126,9 @@ export const getExam = () => async (dispatch) => {
         dispatch({
             type: "RequireGetExam"
         })
+
         const token = getCookie("authToken")
-        const link = `${host}/api/v1/getExams`
-        const { data } = await axios.post(link, {
-            authToken: token
-        })
+        const { data } = await api.getExam({authToken: token})
 
         dispatch({
             type: "GetExamSuccess",
@@ -177,10 +148,10 @@ export const getMyExam = () => async (dispatch) => {
         dispatch({
             type: "RequireMyExam"
         })
+
         const token = getCookie("authToken")
-        const { data } = await axios.post(`${host}/api/v1/getMyExams`, {
-            authToken: token
-        })
+        const { data } = await api.getMyExam({authToken: token})
+
         dispatch({
             type: "GetMyExamSuccess",
             payload: data
@@ -198,16 +169,15 @@ export const createExam = (startDate, endDate) => async (dispatch) => {
         dispatch({
             type: "RequireCreateExam"
         })
+
         const token = getCookie("authToken")
-        const link = `${host}/api/v1/createExam`
-        const { data } = await axios.post(link, {
+        const examDetails = {
             startDate,
             endDate,
             authToken: token
-        }, {
-            Accept: "application/json",
-            "Content-Type": "application/json;charset=UTF-8",
-        })
+        }
+        const { data } = await api.createExam(examDetails)
+
         dispatch({
             type: "CreateExamSuccess",
             payload: data
@@ -237,14 +207,9 @@ export const takeExam = (id) => async (dispatch) => {
         dispatch({
             type: "RequireTakeExam",
         })
+
         const token = getCookie("authToken")
-        const link = `${host}/api/v1/takeExam/${id}`
-        const { data } = await axios.post(link, {
-            authToken: token
-        }, {
-            Accept: "application/json",
-            "Content-Type": "application/json;charset=UTF-8",
-        })
+        const {data} = await api.takeExam({authToken: token, id}, id);
 
         dispatch({
             type: "TakeExamSuccess",
@@ -263,15 +228,14 @@ export const sendAnswers = (answers, examId) => async (dispatch) => {
         dispatch({
             type: "RequireSendAnswers"
         })
-        const link = `${host}/api/v1/getAnswers/${examId}`
+        
         const token = getCookie("authToken")
-        const { data } = await axios.post(link, {
+        const answerDetails = {
             answers,
             authToken: token
-        }, {
-            Accept: "application/json",
-            "Content-Type": "application/json;charset=UTF-8",
-        })
+        }
+        const { data } = await api.sendAnswers(answerDetails, examId);
+
         dispatch({
             type: "SendAnswerSuccess",
             payload: data
@@ -289,14 +253,10 @@ export const calculateScore = (id) => async (dispatch) => {
         dispatch({
             type: "RequireCalScore"
         })
+
         const token = getCookie("authToken")
-        const link = `${host}/api/v1/calculateScore/${id}`
-        const { data } = await axios.post(link, {
-            authToken: token
-        }, {
-            Accept: "application/json",
-            "Content-Type": "application/json;charset=UTF-8",
-        })
+        const {data} = await api.calculateScore({authToken: token}, id);
+
         dispatch({
             type: "CalScoreSuccess",
             payload: data
@@ -314,14 +274,10 @@ export const getScore = (id) => async (dispatch) => {
         dispatch({
             type: "RequireGetScore"
         })
-        const link = `${host}/api/v1/getScore/${id}`
+        
         const token = getCookie("authToken")
-        const {data} = await axios.post(link, {
-            authToken: token
-        }, {
-            Accept: "application/json",
-            "Content-Type": "application/json;charset=UTF-8",
-        })
+        const {data} = await api.getScore({authToken: token}, id);
+
         dispatch({
             type: "GetScoreSuccess",
             payload: data
@@ -340,14 +296,10 @@ export const getScores = (id) => async (dispatch) => {
         dispatch({
             type: "RequireGetScore"
         })
-        const link = `${host}/api/v1/getMyScore/${id}`
+        
         const token = getCookie("authToken")
-        const {data} = await axios.post(link, {
-            authToken: token
-        },{
-            Accept: "application/json",
-            "Content-Type": "application/json;charset=UTF-8",
-        })
+        const {data} = await api.getScores({authToken: token}, id);
+
         dispatch({
             type: "GetScoreSuccess",
             payload: data

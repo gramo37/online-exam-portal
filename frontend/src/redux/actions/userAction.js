@@ -1,11 +1,6 @@
 import { sendEmail } from "../../utils/sendEmail";
 
-const axios = require("axios");
-
-// const host = `http://localhost:5000`
-const host = ``
-// const host = `https://online-exam-portal-by-gramo.herokuapp.com`
-
+import * as api from "../../api/user.js";
 
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
@@ -60,7 +55,6 @@ export const clearState = () => async (dispatch) => {
 };
 
 export const clearOtp = () => async (dispatch) => {
-
   dispatch({
     type: "OTPSendRequire",
   });
@@ -76,18 +70,12 @@ export const loginUser = (email, password) => async (dispatch) => {
       type: "loginRequest",
     });
 
-    const link = `${host}/api/v1/login`;
-    const { data } = await axios.post(
-      link,
-      {
-        email: email,
-        password: password
-      },
-      {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      }
-    );
+    const loginDetails = {
+      email: email,
+      password: password
+    }
+
+    const { data } = await api.loginUser(loginDetails)
 
     setCookie("authToken", data.token, 1);
 
@@ -158,17 +146,7 @@ export const sendOTP = (email) => async (dispatch) => {
       type: "OTPSendRequire",
     });
 
-    const link = `${host}/api/v1/sendOTP`;
-    const { data } = await axios.post(
-      link,
-      {
-        email,
-      },
-      {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      }
-    );
+    const { data } = api.sendOTP({ email });
 
     dispatch({
       type: "OTPSendSuccess",
@@ -188,18 +166,7 @@ export const verifyOTP = (email, otp) => async (dispatch) => {
       type: "OTPVerifyRequire",
     });
 
-    const link = `${host}/api/v1/verifyOTP`;
-    const { data } = await axios.post(
-      link,
-      {
-        email,
-        otp,
-      },
-      {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      }
-    );
+    const { data } = api.verifyOTP({ email, otp });
 
     dispatch({
       type: "OTPVerifySuccess",
@@ -219,21 +186,14 @@ export const signInUser = (userCredentials, role) => async (dispatch) => {
       type: "registerRequest",
     });
 
-    const link = `${host}/api/v1/signup`;
-    console.log(userCredentials, role);
-    const { data } = await axios.post(
-      link,
-      {
-        name: userCredentials.name,
-        email: userCredentials.email,
-        password: userCredentials.password,
-        role: role,
-      },
-      {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      }
-    );
+    const signInDetails = {
+      name: userCredentials.name,
+      email: userCredentials.email,
+      password: userCredentials.password,
+      role: role,
+    }
+
+    const { data } = await api.signInUser(signInDetails)
 
     setCookie("authToken", data.token, 1);
 
@@ -257,15 +217,7 @@ export const sendLink = (email) => async (dispatch) => {
       type: "RequireSendingLink",
     });
 
-    const link = `${host}/api/v1/sendVerificationLink`;
-    const { data } = await axios.post(
-      link,
-      { email: email },
-      {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      }
-    );
+    const { data } = await api.sendLink({ email });
 
     let message = `Copy Paste this token: ${data.message}`
     let subject = 'Reset Token'
@@ -288,18 +240,12 @@ export const verifyLink = (password, resetToken) => async (dispatch) => {
       type: "RequireVerifyingLink",
     });
 
-    const link = `${host}/api/v1/resetPassword/${resetToken}`;
-    const { data } = await axios.post(
-      link,
-      {
-        password: password.password,
-        confirmPassword: password.confirmPassword,
-      },
-      {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      }
-    );
+    // const passwordDetails = {
+    //   password: password.password,
+    //   confirmPassword: password.confirmPassword,
+    // }
+
+    const { data } = await api.verifyLink(password, resetToken)
 
     setCookie("authToken", data.token, 1);
 
@@ -322,19 +268,13 @@ export const sendOTPForEditEmail = (email) => async (dispatch) => {
       type: "OTPSendRequire",
     });
 
-    const link = `${host}/api/v1/sendOtpEditEmail`;
     const token = getCookie("authToken")
-    const { data } = await axios.post(
-      link,
-      {
-        email,
-        authToken: token
-      },
-      {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      }
-    );
+    const authDetails = {
+      email,
+      authToken: token
+    }
+
+    const { data } = await api.sendOTPForEditEmail(authDetails);
 
     dispatch({
       type: "OTPSendSuccess",
@@ -354,19 +294,13 @@ export const editEmail = (email) => async (dispatch) => {
       type: "RequestEditName"
     })
 
-    const link = `${host}/api/v1/editEmail`;
     const token = getCookie("authToken")
-    const { data } = await axios.post(
-      link,
-      {
-        email,
-        authToken: token
-      },
-      {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      }
-    );
+    const authDetails = {
+      email,
+      authToken: token
+    }
+
+    const { data } = await api.editEmail(authDetails);
 
     dispatch({
       type: "EditNameSuccess",
@@ -385,16 +319,10 @@ export const loadUser = () => async (dispatch) => {
     dispatch({
       type: "loadUserRequest",
     });
+
     const token = getCookie("authToken")
-    // console.log(token)
-    const link = `${host}/api/v1/loadUser`;
-    const { data } = await axios.post(link, {
-      authToken: token
-    }, {
-      Accept: "application/json",
-      "Content-Type": "application/json;charset=UTF-8",
-    });
-    console.log(data)
+    const { data } = await api.loadUser({ authToken: token })
+
     dispatch({
       type: "loadUserSuccess",
       payload: data,
@@ -413,19 +341,13 @@ export const changeName = (name) => async (dispatch) => {
       type: "RequestEditName",
     });
 
-    const link = `${host}/api/v1/editName`;
     const token = getCookie("authToken")
-    const { data } = await axios.post(
-      link,
-      {
-        name,
-        authToken: token
-      },
-      {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      }
-    );
+    const authDetails = {
+      name,
+      authToken: token
+    }
+    const { data } = await api.changeName(authDetails);
+
     dispatch({
       type: "EditNameSuccess",
       payload: data,

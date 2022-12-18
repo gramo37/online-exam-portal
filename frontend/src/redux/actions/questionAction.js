@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as api from "../../api/question.js";
 
 const host = ``
 // const host = `http://localhost:5000`
@@ -9,13 +10,13 @@ function getCookie(cname) {
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(';');
   for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-      }
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
   }
   return "";
 }
@@ -25,11 +26,9 @@ export const getQuestions = () => async (dispatch) => {
     dispatch({
       type: "RequireGetQuestions",
     });
+
     const token = getCookie("authToken")
-    const link = `${host}/api/v1/getAllQuestions`;
-    const { data } = await axios.post(link,{
-      authToken: token
-    });
+    const { data } = await api.getQuestions({ authToken: token });
 
     dispatch({
       type: "GetQuestionsSuccess",
@@ -49,21 +48,16 @@ export const createQuestion =
       dispatch({
         type: "RequireCreateQuestion",
       });
-      const link = `${host}/api/v1/createQuestion`;
+
       const token = getCookie("authToken")
-      const { data } = await axios.post(
-        link,
-        {
-          question,
-          options,
-          answer,
-          authToken: token
-        },
-        {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        }
-      );
+      const questionDetails = {
+        question,
+        options,
+        answer,
+        authToken: token
+      }
+
+      const { data } = await api.createQuestion(questionDetails);
 
       dispatch({
         type: "CreateQuestionSuccess",
@@ -83,21 +77,17 @@ export const editQuestion =
       dispatch({
         type: "RequireEditQuestion",
       });
-      const link = `${host}/api/v1/updateQuestion/${id}`;
+
       const token = getCookie("authToken")
-      const { data } = await axios.post(
-        link,
-        {
-          question,
-          options,
-          answer,
-          authToken: token
-        },
-        {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        }
-      );
+      const questionDetails = {
+        question,
+        options,
+        answer,
+        authToken: token
+      }
+
+      const { data } = await api.createQuestion(questionDetails, id);
+
 
       dispatch({
         type: "EditQuestionSuccess",
@@ -116,14 +106,10 @@ export const deleteQuestion = (id) => async (dispatch) => {
     dispatch({
       type: "RequireDeleteQuestion",
     });
-    const link = `${host}/api/v1/deleteQuestion/${id}`;
-    const token = getCookie("authToken")
-    const { data } = await axios.post(link, {
-      authToken: token
-    },{
-      Accept: "application/json",
-      "Content-Type": "application/json;charset=UTF-8",
-    });
+
+    const token = getCookie("authToken");
+
+    const { data } = await api.deleteQuestion({ authToken: token }, id);
 
     dispatch({
       type: "DeleteQuestionSuccess",
@@ -142,15 +128,13 @@ export const deleteOption = (index, id) => async (dispatch) => {
     dispatch({
       type: "RequireDeleteOption",
     });
-    const token = getCookie("authToken")
-    const { data } = await axios.post(
-      `${host}/api/v1/deleteOption/${id}`,
-      { 
-        index: index,
-        authToken: token
-      }
-    );
-    console.log(data);
+
+    const token = getCookie("authToken");
+    const optionDetails = {
+      index: index,
+      authToken: token
+    }
+    const { data } = await api.deleteOption(optionDetails, id);
 
     dispatch({
       type: "DeleteOptionSuccess",
