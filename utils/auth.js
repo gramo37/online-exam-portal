@@ -3,10 +3,10 @@ const userModel = require("../models/userModel");
 
 const isAuthenticatedUser = async (req, res, next) => {
   try {
-  const token = req.cookies.authToken;
+  const token1 = req.cookies.authToken;
   console.log("token1", token);
   const { authToken } = req.body 
-  let token1 = authToken
+  let token = authToken
   console.log("token", token1)
   if(!token || token === undefined) {
     return res.status(401).json({
