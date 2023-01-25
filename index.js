@@ -27,6 +27,8 @@ app.use("/api/v1/", require("./routes/userRoute"))
 app.use("/api/v1/", require("./routes/questionRoute"))
 app.use("/api/v1/", require("./routes/teacherRoute"))
 app.use("/api/v1/", require("./routes/examRoute"))
+// Demo Route
+app.use("/api/v1/", require("./routes/createOrderRoute"))
 
 app.get('*', function (req, res) {
     res.status(404).sendFile(path.join(__dirname, 'public/error.html'));

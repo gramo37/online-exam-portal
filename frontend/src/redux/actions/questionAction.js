@@ -1,9 +1,10 @@
 import axios from "axios";
 import * as api from "../../api/question.js";
 
-const host = ``
+// const host = ``
 // const host = `http://localhost:5000`
 // const host = `https://online-exam-portal-by-gramo.herokuapp.com`
+// const host = `https://online-exam-portal.onrender.com`
 
 function getCookie(cname) {
   let name = cname + "=";

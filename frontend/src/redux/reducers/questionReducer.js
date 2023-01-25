@@ -16,7 +16,6 @@ export const questionReducers = createReducer({},{
         state.questions=""
         state.error=action.payload
     },
-    
 })
 
 export const questionFunctionReducers = createReducer({},{
