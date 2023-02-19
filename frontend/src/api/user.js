@@ -1,7 +1,8 @@
 import axios from "axios";
+import { HOST } from "../config/config";
 
 // const url = '';
-const url = `https://online-exam-portal.onrender.com`
+const url = HOST
 
 const options = {
   Accept: "application/json",
