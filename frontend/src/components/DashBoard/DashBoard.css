@@ -9,7 +9,7 @@
 
 .dashboard-main {
   position: relative;
-  scroll-snap-type: y mandatory;
+  /* scroll-snap-type: y mandatory; */
   overflow: auto;
   height: 100vh;
 }

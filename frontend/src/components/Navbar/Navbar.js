@@ -26,6 +26,7 @@ const Navbar = (props) => {
     } else if(user.user !== "" && user.user !== undefined && isLogoutClicked) {
         alert.success(user.user.message);
         await dispatch(clearState())
+        // await clearState(dispatch);
     } 
   }, [user])
 
