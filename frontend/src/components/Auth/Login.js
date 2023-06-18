@@ -28,7 +28,7 @@ const Login = () => {
       }
     }
     console.log(user, user.loading)
-  }, [user])
+  }, [user, alert, isLoginClicked, navigate])
 
 
   const [userCredentials, setuserCredentials] = useState({

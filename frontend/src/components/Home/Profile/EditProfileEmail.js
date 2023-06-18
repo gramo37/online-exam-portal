@@ -26,7 +26,7 @@ const EditProfileEmailForm = (props) => {
       alert.success(otpStatus.otpStatus.message)
       setShowOtpWindow(true)
     }
-  }, [otpStatus])
+  }, [otpStatus, alert])
   
 
   const onChangeHandler = (e) => {

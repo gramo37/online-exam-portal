@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addRemoveStudent, getStudentProfile } from '../../redux/actions/schoolAction';
 import { loadUser } from '../../redux/actions/userAction';
 import Navbar from '../Navbar/Navbar'
-import Loader from '../Loading/Loader';
+// import Loader from '../Loading/Loader';
 
 const StudentProfile = () => {
   const { id } = useParams()
@@ -16,10 +16,10 @@ const StudentProfile = () => {
     console.log(school, user)
   }, [school, user])
 
-  useEffect(async () => {
-    await dispatch(loadUser())
-    await dispatch(getStudentProfile(id))
-  }, [])
+  useEffect(() => {
+    dispatch(loadUser())
+    dispatch(getStudentProfile(id))
+  }, [dispatch, id])
 
   const addStudent = async () => {
     await dispatch(addRemoveStudent(id))

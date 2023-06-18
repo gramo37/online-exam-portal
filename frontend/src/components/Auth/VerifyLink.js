@@ -6,7 +6,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import { useNavigate } from "react-router-dom";
 import TokenIcon from '@mui/icons-material/Token';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { verifyLink, loadUser } from "../../redux/actions/userAction";
 import { useAlert } from "react-alert";
 var passwordValidator = require("password-validator");
@@ -19,7 +19,7 @@ const VerifyLink = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate()
-  const linkStatus = useSelector((state) => state.linkStatus);
+  // const linkStatus = useSelector((state) => state.linkStatus);
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);

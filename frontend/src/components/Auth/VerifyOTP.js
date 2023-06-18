@@ -33,14 +33,14 @@ const VerifyOTP = () => {
         navigate("/home");
       }
     }
-  }, [user]);
+  }, [user, alert, isVerifyOTPClicked, navigate, otpStatus]);
 
   useEffect(()=>{
     console.log(otpStatus)
     if (otpStatus.error !== "" && otpStatus.error !== undefined) {
       alert.error(otpStatus.error.message);
     }
-  }, [otpStatus])
+  }, [otpStatus, alert])
 
   useEffect(() => {
     console.log(signInDetails)
@@ -48,7 +48,7 @@ const VerifyOTP = () => {
       alert.error("Sorry, Something went wrong.");
       navigate("/signup");
     }
-  }, []);
+  }, [alert, signInDetails, navigate]);
 
   const [otp, setotp] = useState("");
 

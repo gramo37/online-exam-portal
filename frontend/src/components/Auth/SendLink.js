@@ -29,7 +29,7 @@ const SendLink = () => {
     ) {
       alert.success(linkStatus.linkStatus.message);
     }
-  }, [linkStatus]);
+  }, [linkStatus, alert]);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();

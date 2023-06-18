@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import SearchIcon from "@mui/icons-material/Search";
-import { addRemoveStudent, searchStudent, searchTeacher } from "../../redux/actions/schoolAction";
-import { loadUser } from "../../redux/actions/userAction";
+import { searchStudent, searchTeacher } from "../../redux/actions/schoolAction";
+// import { loadUser } from "../../redux/actions/userAction";
 
 import SuggestionBox from "./SuggestionBox";
 
@@ -11,19 +11,17 @@ const SearchPerson = (props) => {
   const [keyword, setKeyword] = useState("")
   const dispatch = useDispatch()
   const school = useSelector((state) => state.school)
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
   const message = useSelector((state) => state.addStudent);
+  const {searchFor} = props
 
-  useEffect(async () => {
-    console.log(school, keyword)
-    console.log(user)
-    console.log(message)
-    if (props.searchFor === "Teacher") {
-      await dispatch(searchTeacher(keyword))
-    } else if (props.searchFor === "Student") {
-      await dispatch(searchStudent(keyword))
+  useEffect(() => {
+    if (searchFor === "Teacher") {
+      dispatch(searchTeacher(keyword))
+    } else if (searchFor === "Student") {
+      dispatch(searchStudent(keyword))
     }
-  }, [keyword, message])
+  }, [keyword, message, dispatch, searchFor])
 
   return (
     <>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import CloseIcon from "@mui/icons-material/Close";
+// import CloseIcon from "@mui/icons-material/Close";
 import { changeName } from "../../../redux/actions/userAction";
 
 const EditProfileNameForm = (props) => {
@@ -14,8 +14,8 @@ const EditProfileNameForm = (props) => {
     setvalue(e.target.value);
   };
 
-  const onSubmit = async (e) => {
-    await dispatch(changeName(value));
+  const onSubmit = (e) => {
+    dispatch(changeName(value));
   };
 
   return (

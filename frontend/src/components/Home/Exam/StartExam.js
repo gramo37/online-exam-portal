@@ -16,16 +16,16 @@ const StartExam = () => {
 
   const [answers, setAnswers] = useState([])
 
-  const submitAnswers = async (e) => {
+  const submitAnswers = (e) => {
     e.preventDefault()
     console.log("hula", answers)
     // sendAnswers
-    await dispatch(sendAnswers(answers, examId))
+    dispatch(sendAnswers(answers, examId))
   }
 
-  useEffect(async () => {
-    await dispatch(takeExam(examId))
-  }, [])
+  useEffect(() => {
+    dispatch(takeExam(examId))
+  }, [examId, dispatch])
 
   useEffect(() => {
     console.log(exam)
@@ -35,13 +35,13 @@ const StartExam = () => {
         navigate("/home")
       }
     }
-  }, [exam])
+  }, [exam, alert, navigate])
 
-  useEffect(async ()=>{
+  useEffect(()=>{
     if(!sendAnswer.loading) {
       if(sendAnswer.error === "" && sendAnswer.status !== "") {
         alert.success("Exam Submitted Successfully.")
-        await dispatch(clearSendAnswer())
+        dispatch(clearSendAnswer())
         navigate("/home")
       }
       else if(sendAnswer.error !== "" && sendAnswer.status === "") {
@@ -49,7 +49,7 @@ const StartExam = () => {
       }
     }
     console.log(sendAnswer)
-  }, [sendAnswer])
+  }, [sendAnswer, alert, navigate, dispatch])
 
   return (
     <>

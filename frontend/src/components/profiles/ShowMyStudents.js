@@ -7,8 +7,8 @@ import Navbar from '../Navbar/Navbar'
 const ShowMyStudents = () => {
     const dispatch = useDispatch()
     const school = useSelector((state) => state.school)
-    useEffect(async () => {
-        await dispatch(getMyStudents())
+    useEffect(() => {
+        dispatch(getMyStudents())
     }, [])
     useEffect(() => {
         console.log(school)

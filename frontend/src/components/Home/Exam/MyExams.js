@@ -11,9 +11,9 @@ const MyExams = () => {
     const myExam = useSelector((state) => state.myExam);
     const score = useSelector((state) => state.score);
 
-    useEffect(async () => {
-        await dispatch(getMyExam())
-    }, [])
+    useEffect(() => {
+        dispatch(getMyExam())
+    }, [dispatch])
 
     useEffect(() => {
         console.log(myExam)

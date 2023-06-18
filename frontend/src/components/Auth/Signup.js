@@ -7,7 +7,7 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import { useDispatch, useSelector } from "react-redux";
-import { storeSignInDetails, sendOTP, signInUser } from "../../redux/actions/userAction";
+import { storeSignInDetails, signInUser } from "../../redux/actions/userAction";
 import { useAlert } from "react-alert";
 var passwordValidator = require("password-validator");
 
@@ -20,7 +20,7 @@ const Signup = () => {
   const [progress, setProgress] = useState(0);
 
   const user = useSelector((state) => state.user);
-  const otpStatus = useSelector((state) => state.otp);
+  // const otpStatus = useSelector((state) => state.otp);
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -41,7 +41,7 @@ const Signup = () => {
       }
     }
     console.log(user, user.loading)
-  }, [user])
+  }, [user, alert, navigate])
 
   // Un comment when sending otp
   // useEffect(() => {
