@@ -13,6 +13,8 @@ import pageImage2 from "./images/page2Image.png";
 import pageImage3 from "./images/page3Image.png";
 import videoBgImage from "./images/videobg.jpg";
 
+import {motion} from "framer-motion"
+
 import { Link } from "react-router-dom";
 
 const DashBoard = () => {
@@ -40,11 +42,14 @@ const DashBoard = () => {
 };
 
 const DashBoardInfo = ({ bgImage, title, desc, image, align }) => {
-  console.log("dgfdbfdb");
   return (
 
     // <header className="dashboard-header">
-    <header style={{ backgroundImage: `url(${bgImage})` }} className="dashboard-header">
+    <header 
+    // <motion.header 
+      initial={{opacity: 0}}
+      whileInView={{opacity: 1}}
+      style={{ backgroundImage: `url(${bgImage})` }} className="dashboard-header">
       <div className="dashboard-overlay"></div>
       <div className="dashboard-header-container" style={{ flexDirection: `${align == "left" ? "row-reverse" : "row"}` }}>
         <div className={`dashboard-header-image`}>

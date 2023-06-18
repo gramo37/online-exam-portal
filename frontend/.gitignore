@@ -6,3 +6,7 @@
 nodemodules
 
 /coverage
+
+/frontend/build
+
+/build
